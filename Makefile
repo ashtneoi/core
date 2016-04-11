@@ -12,7 +12,9 @@ OBJ := $(SRC:%.c=%.o)
 EXE := $(EXE_SRC:%.c=%)
 
 CC := gcc
-CFLAGS := -std=c99 -pedantic -g -Wall -Wextra -Werror -Wno-unused-function
+CFLAGS := $(if $(DEBUG),-DDEBUG) \
+	-std=c99 -pedantic -g -Wall -Wextra -Werror \
+	$(if $(STRICT),-Wunused,-Wno-unused)
 
 
 all: $(EXE) $(EXTRA_EXE)
