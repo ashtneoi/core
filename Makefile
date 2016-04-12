@@ -1,8 +1,10 @@
 MAKEFLAGS += --no-builtin-rules
 .SUFFIXES:
+.DELETE_ON_ERROR:
 
 .SECONDEXPANSION:
-.DELETE_ON_ERROR:
+.DEFAULT_GOAL := all
+.PHONY: all clean
 
 
 EXE_SRC := prog.c
@@ -35,7 +37,3 @@ fail.o: common.h fail.h
 prog.o: common.h fail.h
 
 prog: fail.o prog.o
-
-
-.DEFAULT_GOAL := all
-.PHONY: all clean
