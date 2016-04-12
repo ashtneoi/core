@@ -19,7 +19,7 @@ CFLAGS := $(if $(DEBUG),-DDEBUG) \
 	$(if $(STRICT),-Wunused,-Wno-unused)
 
 
-all: $(EXE) $(EXTRA_EXE)
+all: $(EXE)
 
 $(OBJ): $$(patsubst %.o,%.c,$$@)
 	$(CC) $(CFLAGS) -c -o $@ $<
