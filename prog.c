@@ -7,5 +7,6 @@
 
 int main()
 {
+    warning("About to exit");
     fatal(E_COMMON, "Program not implemented");
 }
