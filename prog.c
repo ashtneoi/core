@@ -15,7 +15,7 @@ struct args {
 };
 
 
-void exit_with_usage()
+static void exit_with_usage()
 {
     print(
         "Usage:  prog [OPTIONS]\n"
@@ -28,7 +28,7 @@ void exit_with_usage()
 }
 
 
-struct args get_args(int argc, char** argv)
+static struct args get_args(int argc, char** argv)
 {
     struct args args = {
         .dummy = 0,
