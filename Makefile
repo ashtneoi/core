@@ -1,4 +1,4 @@
-MAKEFLAGS += --no-builtin-rules
+MAKEFLAGS += --no-builtin-rules --warn-undefined-variables
 .SUFFIXES:
 .DELETE_ON_ERROR:
 
