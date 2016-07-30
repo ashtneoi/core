@@ -15,7 +15,7 @@ struct args {
 };
 
 
-static void exit_with_usage()
+static void exit_with_usage(void)
 {
     print(
         "Usage:  prog [OPTIONS]\n"
