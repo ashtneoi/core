@@ -40,6 +40,7 @@ void warning_(const char* srcname, int line, const char* format, ...)
 
 void warning_e_(const char* srcname, int line, const char* format, ...)
 {
+    int e = errno;
     fflush(stdout);
 #ifdef DEBUG
     fprintf(stderr, "%s:%d: ", srcname, line);
@@ -50,7 +51,7 @@ void warning_e_(const char* srcname, int line, const char* format, ...)
     va_start(args, format);
     vfprintf(stderr, format, args);
     va_end(args);
-    fprintf(stderr, " (%s)\n", strerror(errno));
+    fprintf(stderr, " (%s)\n", strerror(e));
 }
 
 
@@ -75,6 +76,7 @@ void fatal_(int rtn, const char* srcname, int line,
 void fatal_e_(int rtn, const char* srcname, int line,
         const char* format, ...)
 {
+    int e = errno;
     fflush(stdout);
 #ifdef DEBUG
     fprintf(stderr, "%s:%d: ", srcname, line);
@@ -85,6 +87,6 @@ void fatal_e_(int rtn, const char* srcname, int line,
     va_start(args, format);
     vfprintf(stderr, format, args);
     va_end(args);
-    fprintf(stderr, " (%s)\n", strerror(errno));
+    fprintf(stderr, " (%s)\n", strerror(e));
     exit(rtn);
 }
