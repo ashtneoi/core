@@ -2,32 +2,29 @@ MAKEFLAGS += --no-builtin-rules --warn-undefined-variables
 .SUFFIXES:
 .DELETE_ON_ERROR:
 
-.SECONDEXPANSION:
 .DEFAULT_GOAL := all
 .PHONY: all clean
 
 
-EXE_SRC := prog.c
-SRC := $(EXE_SRC) fail.c
+EXE := prog
+SRC := $(EXE:%=%.c) fail.c
 
 OBJ := $(SRC:%.c=%.o)
-EXE := $(EXE_SRC:%.c=%)
 
 CC := gcc
 CFLAGS := $(if $(DEBUG),-DDEBUG) \
 	-std=c99 -pedantic -g -Wall -Wextra -Werror \
 	$(if $(STRICT),-Wunused,-Wno-unused)
+LFLAGS :=
 
 
 all: $(EXE)
 
-$(OBJ): $$(patsubst %.o,%.c,$$@)
+$(OBJ): %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-$(EXE) $(EXTRA_EXE):
-	$(CC) -o $@ $^
-
-$(EXE): $$@.o
+$(EXE): %: %.o
+	$(CC) -o $@ $^ $(LFLAGS)
 
 clean:
 	rm -f $(OBJ) $(EXE)
@@ -36,4 +33,4 @@ clean:
 fail.o: common.h fail.h
 prog.o: common.h fail.h
 
-prog: fail.o prog.o
+prog: fail.o
