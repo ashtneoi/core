@@ -30,6 +30,7 @@ void warning_(const char* srcname, int line, const char* format, ...)
 #else
     (void)srcname; (void)line;
 #endif
+    fputs("warning: ", stderr);
     va_list args;
     va_start(args, format);
     vfprintf(stderr, format, args);
@@ -47,6 +48,7 @@ void warning_e_(const char* srcname, int line, const char* format, ...)
 #else
     (void)srcname; (void)line;
 #endif
+    fputs("warning: ", stderr);
     va_list args;
     va_start(args, format);
     vfprintf(stderr, format, args);
@@ -64,6 +66,7 @@ void fatal_(int rtn, const char* srcname, int line,
 #else
     (void)srcname; (void)line;
 #endif
+    fputs("error: ", stderr);
     va_list args;
     va_start(args, format);
     vfprintf(stderr, format, args);
@@ -83,6 +86,7 @@ void fatal_e_(int rtn, const char* srcname, int line,
 #else
     (void)srcname; (void)line;
 #endif
+    fputs("error: ", stderr);
     va_list args;
     va_start(args, format);
     vfprintf(stderr, format, args);
